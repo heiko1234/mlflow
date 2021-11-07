@@ -1,0 +1,15 @@
+FROM python:3.8-slim-buster
+
+WORKDIR /usr/src/app
+
+
+
+RUN apt-get update
+
+RUN pip install --upgrade pip
+
+RUN pip install psycopg2-binary~=2.8 azure-storage-blob==12.7.1 mlflow==1.14.1 pylibyaml==0.1.0 PyYAML 
+
+
+ENTRYPOINT mlflow server -h 0.0.0.0 -p 5000 --default-artifact-root wasbs://model-container@devstoreaccount1.blob.core.windows.net --backend-store-uri postgresql://postgres:postgres@postgres:5432/postgres
+

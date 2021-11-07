@@ -1,0 +1,51 @@
+FROM mcr.microsoft.com/azure-storage/azurite:3.11.0
+
+ENV NODE_PATH /usr/local/lib/node_modules
+
+RUN npm install -g @azure/storage-blob@12.5.0
+
+RUN echo $'const { BlobServiceClient, StorageSharedKeyCredential } = require("@azure/storage-blob");\n\
+\n\
+const accountName = process.env.AZURE_STORAGE_ACCOUNT || "";\n\
+const accountKey = process.env.AZURE_STORAGE_ACCESS_KEY || "";\n\
+\n\
+async function createContainer(containerName) {\n\
+    const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey);\n\
+\n\
+    const blobServiceClient = new BlobServiceClient(\n\
+        `http://localhost:10000/${accountName}`,\n\
+        sharedKeyCredential\n\
+    );\n\
+\n\
+    const containerClient = blobServiceClient.getContainerClient(containerName);\n\
+\n\
+    const createContainerResponse = await containerClient.create();\n\
+    console.log(`Create container ${containerName} successfully`, createContainerResponse.requestId);\n\
+}\n\
+\n\
+function main() {\n\
+    const containerNames = [`model-container`];\n\
+    for (var i = 0; i < containerNames.length; i++) {\n\
+        const containerName = containerNames[i]\n\
+        createContainer(containerName).catch((err) => {\n\
+            console.error(`Error running ${containerName}:`, err.message);\n\
+        });\n\
+    }\n\
+}\n\
+\n\
+main();\n'\
+>> /create-container.js
+
+RUN echo $'#!/bin/sh\n\
+\n\
+azurite -l /data -d /data/debug.log --blobHost 0.0.0.0 --queueHost 0.0.0.0 --loose &\n\
+\n\
+sleep 2\n\
+\n\
+node /create-container.js\n\
+tail -f /data/debug.log\n'\
+>> /run.sh
+
+RUN chmod +x /create-container.js && chmod +x /run.sh
+
+CMD /run.sh

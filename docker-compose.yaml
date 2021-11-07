@@ -1,0 +1,59 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    hostname: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres-storage:/var/lib/postgresql/data
+    networks:
+      - general_nw
+
+  azurite:
+    build:
+      dockerfile: Dockerfile.azurite
+      context: .
+    container_name: blob
+    hostname: azurite
+    environment:
+      AZURE_STORAGE_ACCOUNT: devstoreaccount1
+      AZURE_STORAGE_ACCESS_KEY: Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
+    ports:
+      - 10000:10000
+      - 10001:10001
+    volumes:
+      - azurite-storage:/data
+    networks:
+      - general_nw
+
+  mlflow:
+    build:
+      dockerfile: Dockerfile.mlflow
+      context: .
+    ports:
+      - "5000:5000"
+    environment:
+      AZURE_STORAGE_CONNECTION_STRING: DefaultEndpointsProtocol="http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;QueueEndpoint=http://azurite:10001/devstoreaccount1"
+      GUNICORN_CMD_ARGS: "--timeout 300 --log-level debug"
+    networks:
+      - general_nw
+    depends_on:
+      - postgres
+      - azurite
+
+volumes:
+  azurite-storage:
+    driver: local
+  postgres-storage:
+    driver: local
+
+networks:
+  general_nw:
+    driver: bridge
