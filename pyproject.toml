@@ -7,7 +7,7 @@ authors = ["Heiko Kulinna <Heikokulinna@gmx.de>"]
 [tool.poetry.dependencies]
 python = ">= 3.8.4, < 3.9"
 python-dotenv = "^0.19.1"
-mlflow = "^1.21.0"
+mlflow = "==1.14.1" 
 
 
 [tool.poetry.dev-dependencies]

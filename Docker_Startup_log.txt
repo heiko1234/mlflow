@@ -1,0 +1,192 @@
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+Creating blob     ... done
+Creating postgres ... done
+Creating mlflow_mlflow_1 ... done
+Attaching to blob, postgres, mlflow_mlflow_1
+blob        | Azurite Blob service is starting at http://0.0.0.0:10000
+blob        | Azurite Blob service is successfully listening at http://0.0.0.0:10000
+blob        | Azurite Queue service is starting at http://0.0.0.0:10001
+blob        | Azurite Queue service is successfully listening at http://0.0.0.0:10001
+postgres    | The files belonging to this database system will be owned by user "postgres".
+postgres    | This user must also own the server process.
+postgres    |
+postgres    | The database cluster will be initialized with locale "en_US.utf8".
+postgres    | The default database encoding has accordingly been set to "UTF8".
+postgres    | The default text search configuration will be set to "english".
+postgres    |
+postgres    | Data page checksums are disabled.
+postgres    |
+postgres    | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres    | creating subdirectories ... ok
+postgres    | selecting dynamic shared memory implementation ... posix
+postgres    | selecting default max_connections ... 100
+postgres    | selecting default shared_buffers ... 128MB
+postgres    | selecting default time zone ... Etc/UTC
+postgres    | creating configuration files ... ok
+postgres    | running bootstrap script ... ok
+postgres    | performing post-bootstrap initialization ... ok
+postgres    | syncing data to disk ... ok
+postgres    |
+postgres    |
+postgres    | Success. You can now start the database server using:
+postgres    |
+postgres    |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres    |
+postgres    | initdb: warning: enabling "trust" authentication for local connections
+postgres    | You can change this by editing pg_hba.conf or using the option -A, or
+postgres    | --auth-local and --auth-host, the next time you run initdb.
+postgres    | waiting for server to start....2021-11-08 18:51:48.178 UTC [48] LOG:  starting PostgreSQL 14.0 (Debian 14.0-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgres    | 2021-11-08 18:51:48.181 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres    | 2021-11-08 18:51:48.189 UTC [49] LOG:  database system was shut down at 2021-11-08 18:51:47 UTC
+postgres    | 2021-11-08 18:51:48.193 UTC [48] LOG:  database system is ready to accept connections
+postgres    |  done
+postgres    | server started
+postgres    |
+postgres    | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres    |
+postgres    | waiting for server to shut down...2021-11-08 18:51:48.290 UTC [48] LOG:  received fast shutdown request
+postgres    | .2021-11-08 18:51:48.293 UTC [48] LOG:  aborting any active transactions
+postgres    | 2021-11-08 18:51:48.294 UTC [48] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+postgres    | 2021-11-08 18:51:48.294 UTC [50] LOG:  shutting down
+postgres    | 2021-11-08 18:51:48.312 UTC [48] LOG:  database system is shut down
+postgres    |  done
+postgres    | server stopped
+postgres    |
+postgres    | PostgreSQL init process complete; ready for start up.
+postgres    |
+postgres    | 2021-11-08 18:51:48.404 UTC [1] LOG:  starting PostgreSQL 14.0 (Debian 14.0-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgres    | 2021-11-08 18:51:48.404 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres    | 2021-11-08 18:51:48.404 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres    | 2021-11-08 18:51:48.409 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres    | 2021-11-08 18:51:48.414 UTC [60] LOG:  database system was shut down at 2021-11-08 18:51:48 UTC
+postgres    | 2021-11-08 18:51:48.418 UTC [1] LOG:  database system is ready to accept connections
+blob        | 127.0.0.1 - - [08/Nov/2021:18:51:49 +0000] "PUT /devstoreaccount1/model-container?restype=container HTTP/1.1" 201 -
+blob        | Create container model-container successfully 428183c5-353e-4080-ae86-44c8856f66b7
+blob        | 2021-11-08T18:51:49.399Z 428183c5-353e-4080-ae86-44c8856f66b7 debug: PublicAccessAuthenticator:validate() Retrieved account name from context: devstoreaccount1, container: model-container, blob:
+blob        | 2021-11-08T18:51:49.401Z 428183c5-353e-4080-ae86-44c8856f66b7 debug: PublicAccessAuthenticator:validate() Skip public access authentication. Cannot get public access type
+for container model-container
+blob        | 2021-11-08T18:51:49.401Z 428183c5-353e-4080-ae86-44c8856f66b7 info: BlobSharedKeyAuthenticator:validate() Start validation against account shared key authentication.
+blob        | 2021-11-08T18:51:49.402Z 428183c5-353e-4080-ae86-44c8856f66b7 info: BlobSharedKeyAuthenticator:validate() [STRING TO SIGN]:"PUT\n\n\n\n\n\n\n\n\n\n\n\nx-ms-client-request-id:80c0a150-2bde-42a4-b45d-b4ad1de125c6\nx-ms-date:Mon, 08 Nov 2021 18:51:49 GMT\nx-ms-version:2020-06-12\n/devstoreaccount1/devstoreaccount1/model-container\nrestype:container"
+blob        | 2021-11-08T18:51:49.402Z 428183c5-353e-4080-ae86-44c8856f66b7 info: BlobSharedKeyAuthenticator:validate() Calculated authentication header based on key1: SharedKey devstoreaccount1:f3g40nzWEXLFmJFYb1Q9WhMOOcD6rf4jyaaMrYrOs5U=
+blob        | 2021-11-08T18:51:49.402Z 428183c5-353e-4080-ae86-44c8856f66b7 info: BlobSharedKeyAuthenticator:validate() Signature 1 matched.
+blob        | 2021-11-08T18:51:49.402Z 428183c5-353e-4080-ae86-44c8856f66b7 verbose: DeserializerMiddleware: Start deserializing...
+blob        | 2021-11-08T18:51:49.403Z 428183c5-353e-4080-ae86-44c8856f66b7 info: HandlerMiddleware: DeserializedParameters={"options":{"metadata":{},"requestId":"80c0a150-2bde-42a4-b45d-b4ad1de125c6"},"restype":"container","version":"2020-06-12"}
+blob        | 2021-11-08T18:51:49.404Z 428183c5-353e-4080-ae86-44c8856f66b7 verbose: SerializerMiddleware: Start serializing...
+blob        | 2021-11-08T18:51:49.404Z 428183c5-353e-4080-ae86-44c8856f66b7 info: EndMiddleware: End response. TotalTimeInMS=7 StatusCode=201 StatusMessage=undefined Headers={"server":"Azurite-Blob/3.11.0","etag":"\"0x2167A636DDBD540\"","last-modified":"Mon, 08 Nov 2021 18:51:49 GMT","x-ms-client-request-id":"80c0a150-2bde-42a4-b45d-b4ad1de125c6","x-ms-request-id":"428183c5-353e-4080-ae86-44c8856f66b7","x-ms-version":"2020-06-12"}
+mlflow_1    | 2021/11/08 18:51:49 INFO mlflow.store.db.utils: Creating initial MLflow database tables...
+mlflow_1    | 2021/11/08 18:51:49 INFO mlflow.store.db.utils: Updating database tables
+mlflow_1    | INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+mlflow_1    | INFO  [alembic.runtime.migration] Will assume transactional DDL.
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade  -> 451aebb31d03, add metric step
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade 451aebb31d03 -> 90e64c465722, migrate user column to tags
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade 90e64c465722 -> 181f10493468, allow nulls for metric values
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade 181f10493468 -> df50e92ffc5e, Add Experiment Tags Table
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade df50e92ffc5e -> 7ac759974ad8, Update run tags with larger limit
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade 7ac759974ad8 -> 89d4b8295536, create latest metrics table
+mlflow_1    | INFO  [89d4b8295536_create_latest_metrics_table_py] Migration complete!
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade 89d4b8295536 -> 2b4d017a5e9b, add model registry tables to db
+mlflow_1    | INFO  [2b4d017a5e9b_add_model_registry_tables_to_db_py] Adding registered_models and model_versions tables to database.
+mlflow_1    | INFO  [2b4d017a5e9b_add_model_registry_tables_to_db_py] Migration complete!
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade 2b4d017a5e9b -> cfd24bdc0731, Update run status constraint with killed
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade cfd24bdc0731 -> 0a8213491aaa, drop_duplicate_killed_constraint
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade 0a8213491aaa -> 728d730b5ebd, add registered model tags table
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade 728d730b5ebd -> 27a6a02d2cf1, add model version tags table
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade 27a6a02d2cf1 -> 84291f40a231, add run_link to model_version
+mlflow_1    | INFO  [alembic.runtime.migration] Running upgrade 84291f40a231 -> a8c4a736bde6, allow nulls for run_id
+mlflow_1    | INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+mlflow_1    | INFO  [alembic.runtime.migration] Will assume transactional DDL.
+mlflow_1    | [2021-11-08 18:51:49 +0000] [24] [DEBUG] Current configuration:
+mlflow_1    |   config: ./gunicorn.conf.py
+mlflow_1    |   wsgi_app: None
+mlflow_1    |   bind: ['0.0.0.0:5000']
+mlflow_1    |   backlog: 2048
+mlflow_1    |   workers: 4
+mlflow_1    |   worker_class: sync
+mlflow_1    |   threads: 1
+mlflow_1    |   worker_connections: 1000
+mlflow_1    |   max_requests: 0
+mlflow_1    |   max_requests_jitter: 0
+mlflow_1    |   timeout: 300
+mlflow_1    |   graceful_timeout: 30
+mlflow_1    |   keepalive: 2
+mlflow_1    |   limit_request_line: 4094
+mlflow_1    |   limit_request_fields: 100
+mlflow_1    |   limit_request_field_size: 8190
+mlflow_1    |   reload: False
+mlflow_1    |   reload_engine: auto
+mlflow_1    |   reload_extra_files: []
+mlflow_1    |   spew: False
+mlflow_1    |   check_config: False
+mlflow_1    |   print_config: False
+mlflow_1    |   preload_app: False
+mlflow_1    |   sendfile: None
+mlflow_1    |   reuse_port: False
+mlflow_1    |   chdir: /usr/src/app
+mlflow_1    |   daemon: False
+mlflow_1    |   raw_env: []
+mlflow_1    |   pidfile: None
+mlflow_1    |   worker_tmp_dir: None
+mlflow_1    |   user: 0
+mlflow_1    |   group: 0
+mlflow_1    |   umask: 0
+mlflow_1    |   initgroups: False
+mlflow_1    |   tmp_upload_dir: None
+mlflow_1    |   secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+mlflow_1    |   forwarded_allow_ips: ['127.0.0.1']
+mlflow_1    |   accesslog: None
+mlflow_1    |   disable_redirect_access_to_syslog: False
+mlflow_1    |   access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+mlflow_1    |   errorlog: -
+mlflow_1    |   loglevel: debug
+mlflow_1    |   capture_output: False
+mlflow_1    |   logger_class: gunicorn.glogging.Logger
+mlflow_1    |   logconfig: None
+mlflow_1    |   logconfig_dict: {}
+mlflow_1    |   syslog_addr: udp://localhost:514
+mlflow_1    |   syslog: False
+mlflow_1    |   syslog_prefix: None
+mlflow_1    |   syslog_facility: user
+mlflow_1    |   enable_stdio_inheritance: False
+mlflow_1    |   statsd_host: None
+mlflow_1    |   dogstatsd_tags:
+mlflow_1    |   statsd_prefix:
+mlflow_1    |   proc_name: None
+mlflow_1    |   default_proc_name: mlflow.server:app
+mlflow_1    |   pythonpath: None
+mlflow_1    |   paste: None
+mlflow_1    |   on_starting: <function OnStarting.on_starting at 0x7f30c222b700>
+mlflow_1    |   on_reload: <function OnReload.on_reload at 0x7f30c222b820>
+mlflow_1    |   when_ready: <function WhenReady.when_ready at 0x7f30c222b940>
+mlflow_1    |   pre_fork: <function Prefork.pre_fork at 0x7f30c222ba60>
+mlflow_1    |   post_fork: <function Postfork.post_fork at 0x7f30c222bb80>
+mlflow_1    |   post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f30c222bca0>
+mlflow_1    |   worker_int: <function WorkerInt.worker_int at 0x7f30c222bdc0>
+mlflow_1    |   worker_abort: <function WorkerAbort.worker_abort at 0x7f30c222bee0>
+mlflow_1    |   pre_exec: <function PreExec.pre_exec at 0x7f30c2240040>
+mlflow_1    |   pre_request: <function PreRequest.pre_request at 0x7f30c2240160>
+mlflow_1    |   post_request: <function PostRequest.post_request at 0x7f30c22401f0>
+mlflow_1    |   child_exit: <function ChildExit.child_exit at 0x7f30c2240310>
+mlflow_1    |   worker_exit: <function WorkerExit.worker_exit at 0x7f30c2240430>
+mlflow_1    |   nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f30c2240550>
+mlflow_1    |   on_exit: <function OnExit.on_exit at 0x7f30c2240670>
+mlflow_1    |   proxy_protocol: False
+mlflow_1    |   proxy_allow_ips: ['127.0.0.1']
+mlflow_1    |   keyfile: None
+mlflow_1    |   certfile: None
+mlflow_1    |   ssl_version: 2
+mlflow_1    |   cert_reqs: 0
+mlflow_1    |   ca_certs: None
+mlflow_1    |   suppress_ragged_eofs: True
+mlflow_1    |   do_handshake_on_connect: False
+mlflow_1    |   ciphers: None
+mlflow_1    |   raw_paste_global_conf: []
+mlflow_1    |   strip_header_spaces: False
+mlflow_1    | [2021-11-08 18:51:49 +0000] [24] [INFO] Starting gunicorn 20.1.0
+mlflow_1    | [2021-11-08 18:51:49 +0000] [24] [DEBUG] Arbiter booted
+mlflow_1    | [2021-11-08 18:51:49 +0000] [24] [INFO] Listening at: http://0.0.0.0:5000 (24)
+mlflow_1    | [2021-11-08 18:51:49 +0000] [24] [INFO] Using worker: sync
+mlflow_1    | [2021-11-08 18:51:49 +0000] [26] [INFO] Booting worker with pid: 26
+mlflow_1    | [2021-11-08 18:51:49 +0000] [27] [INFO] Booting worker with pid: 27
+mlflow_1    | [2021-11-08 18:51:50 +0000] [43] [INFO] Booting worker with pid: 43
+mlflow_1    | [2021-11-08 18:51:50 +0000] [59] [INFO] Booting worker with pid: 59
+mlflow_1    | [2021-11-08 18:51:50 +0000] [24] [DEBUG] 4 workers
