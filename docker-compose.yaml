@@ -5,6 +5,7 @@ services:
     image: postgres
     container_name: postgres
     hostname: postgres
+    restart: always
     ports:
       - 5432:5432
     environment:
@@ -22,6 +23,7 @@ services:
       context: .
     container_name: blob
     hostname: azurite
+    restart: always
     environment:
       AZURE_STORAGE_ACCOUNT: devstoreaccount1
       AZURE_STORAGE_ACCESS_KEY: Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
@@ -37,6 +39,7 @@ services:
     build:
       dockerfile: Dockerfile.mlflow
       context: .
+    restart: always
     ports:
       - "5000:5000"
     environment:
@@ -57,3 +60,5 @@ volumes:
 networks:
   general_nw:
     driver: bridge
+    name: general_nw
+

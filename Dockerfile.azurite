@@ -49,3 +49,4 @@ tail -f /data/debug.log\n'\
 RUN chmod +x /create-container.js && chmod +x /run.sh
 
 CMD /run.sh
+
